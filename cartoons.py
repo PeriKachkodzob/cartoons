@@ -29,8 +29,10 @@ def sendMessage(title, urlPhoto):
 def getUrlPhoto(href):
     r = requests.get('https://toloka.to/' + href)
     soup = BeautifulSoup(r.text, 'lxml')
-    tag = soup.find('a', {'class':'postlink'})
-    src = tag.img['src']
+    #tag = soup.find('a', {'class':'postlink'})
+    tag = soup.find('span', {'class':'postbody'}).find('img')
+    #src = tag.img['src']
+    src = tag['src']
     return 'https:' + src
 
 def main():
